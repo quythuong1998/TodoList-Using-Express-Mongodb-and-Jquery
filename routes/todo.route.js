@@ -7,5 +7,5 @@ todoRouter.get('/', todoController.getTodo); // GET method /api/todos
 todoRouter.post('/', todoController.createTodo); //POST method /api/todos
 
 todoRouter.put('/:id', todoController.updateTodo); //PUT method /api/todos (UPDATE a todo)
-
+todoRouter.delete('/:id', todoController.deleteTodo);
 module.exports = todoRouter;

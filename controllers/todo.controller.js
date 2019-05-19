@@ -20,3 +20,10 @@ module.exports.updateTodo = function(req, res) {
         res.json(todo);
     })
 }
+
+module.exports.deleteTodo = function(req, res){
+    todoDB.remove({_id: req.params.id})
+    .then(function(){
+        res.json({message: 'Deleted!'})
+    })
+}
