@@ -5,6 +5,10 @@ $(document).ready(function(){
     $("#buttonAdd").click(function(){
         createTodo();
     })
+
+    $('.list').on('click', 'li', function(){
+        updateTodo($(this));
+    })
 });
 
 function renderTodos(todos){
@@ -28,4 +32,19 @@ function createTodo(){
         $('#todoContent').val(''); //set empty after create new Todo
         renderATodo(newTodo);
     })   
+}
+
+function updateTodo(todo){
+    var url = 'api/todos/' + todo.data('id');
+    var isDone = !todo.data('completed');
+    var updateStatus = {completed: isDone};
+    $.ajax({
+        method: 'PUT',
+        url,
+        //dataType: 'html',
+        data: updateStatus
+    }).then(function(updateTodo){
+        todo.toggleClass('done');
+        todo.data('Completed', isDone)
+    })
 }

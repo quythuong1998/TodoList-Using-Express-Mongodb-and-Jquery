@@ -14,3 +14,9 @@ module.exports.createTodo = function(req, res){
     })
 }
 
+module.exports.updateTodo = function(req, res) {
+    todoDB.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
+    .then(function(todo){
+        res.json(todo);
+    })
+}
