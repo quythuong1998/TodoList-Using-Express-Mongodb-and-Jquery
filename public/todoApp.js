@@ -42,6 +42,10 @@ function renderATodo(todo){
 
 function createTodo(){
     const todoContent = $('#todoContent').val();
+    if(todoContent == ""){
+        alert('You must write something !');
+        return;
+    }
     $.post('/api/todos', {name: todoContent})
     .then(function(newTodo){
         $('#todoContent').val(''); //set empty after create new Todo
